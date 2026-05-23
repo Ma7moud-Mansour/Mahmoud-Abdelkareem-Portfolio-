@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mahmoud Abdelkareem | Software Engineer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#2563eb", // Electric Cobalt Blue
+                        "inverse-surface": "#2e3132",
+                        "secondary": "#515f74",
+                        "on-surface": "#191c1d",
+                        "primary-fixed": "#e2dfff",
+                        "on-tertiary-fixed": "#111c2d",
+                        "surface-container": "#edeeef",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-bright": "#f8f9fa",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#d5e3fc",
+                        "on-background": "#191c1d",
+                        "tertiary": "#3e495d",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#ffffff",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "surface-dim": "#d9dadb",
+                        "outline": "#777587",
+                        "surface-tint": "#2563eb",
+                        "surface-variant": "#e1e3e4",
+                        "secondary-container": "#d5e3fc",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "primary-container": "#2563eb",
+                        "surface-container-high": "#e7e8e9",
+                        "tertiary-container": "#566175",
+                        "on-primary-fixed": "#001a41",
+                        "on-primary-fixed-variant": "#1d4ed8",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f3f4f5",
+                        "surface": "#f8f9fa",
+                        "tertiary-fixed": "#d8e3fb",
+                        "inverse-primary": "#c3c0ff",
+                        "on-surface-variant": "#464555",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#d1dcf4",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#57657a",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#3c475a",
+                        "background": "#f8f9fa",
+                        "tertiary-fixed-dim": "#bcc7de",
+                        "outline-variant": "#c7c4d8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "section-gap-lg": "128px",
+                        "section-gap-md": "80px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "unit": "8px",
+                        "container-max": "1120px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "code-sm": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "display-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["84px", {"lineHeight": "1.0", "letterSpacing": "-0.05em", "fontWeight": "900"}],
+                        "label-md": ["14px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "code-sm": ["13px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg-mobile": ["56px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "900"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background: linear-gradient(-45deg, #fdfbfb, #ebedee, #dbeafe, #f1f5f9);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px 0 rgba(37, 99, 235, 0.05);
+        }
+        
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .interactive-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .interactive-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.12);
+            border-color: rgba(37, 99, 235, 0.3);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #111827 0%, #2563eb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .flagship-glow {
+            position: relative;
+        }
+        .flagship-glow::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, #2563eb, #60a5fa, #2563eb);
+            border-radius: 1rem;
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="text-on-background font-body-md antialiased selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col relative overflow-x-hidden">
+<!-- Decorative Background Elements -->
+<div class="fixed top-[-10%] right-[-5%] w-96 h-96 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl floating-element -z-10" style="animation-delay: 0s;"></div>
+<div class="fixed bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-40 floating-element -z-10" style="animation-delay: -3s;"></div>
+<!-- TopNavBar -->
+<nav class="sticky top-0 w-full z-50 glass-nav">
+<div class="flex justify-between items-center max-w-[1120px] mx-auto px-gutter h-20">
+<a class="font-headline-lg text-headline-lg font-black text-primary tracking-tighter hover:opacity-80 transition-opacity" href="#">MA.</a>
+<div class="hidden md:flex flex-1 justify-center">
+<ul class="flex gap-10">
+<li><a class="text-secondary hover:text-primary transition-colors duration-200 font-semibold tracking-wide" href="#projects">Projects</a></li>
+<li><a class="text-secondary hover:text-primary transition-colors duration-200 font-semibold tracking-wide" href="#skills">Skills</a></li>
+<li><a class="text-secondary hover:text-primary transition-colors duration-200 font-semibold tracking-wide" href="#contact">Contact</a></li>
+</ul>
+</div>
+<div class="hidden md:flex items-center">
+<a class="px-7 py-2.5 bg-primary text-white font-label-md text-label-md hover:bg-primary/90 transition-all duration-300 rounded-lg font-bold shadow-lg shadow-primary/20" href="https://drive.google.com/file/d/1cU5NoYIX-VrhQFvnl0jlcaVAxFdQDb3m/view?usp=drive_link">Resume</a>
+</div>
+<!-- Mobile Menu Toggle -->
+<button aria-label="Toggle Menu" class="md:hidden text-on-surface p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="max-w-[1120px] mx-auto px-gutter py-section-gap-md md:py-section-gap-lg flex flex-col items-center justify-center min-h-[85vh] relative z-10 text-center">
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full filter blur-[120px] -z-10"></div>
+<div class="max-w-5xl">
+<h2 class="font-sans text-sm md:text-base font-bold text-primary tracking-[0.4em] uppercase mb-8">Software Engineer</h2>
+<h1 class="font-black text-display-lg-mobile md:text-display-lg mb-8 text-gradient leading-none tracking-tighter uppercase">
+                Mahmoud<br/>Abdelkareem
+            </h1>
+<p class="font-body-lg text-body-lg text-secondary mb-12 max-w-3xl mx-auto leading-relaxed text-lg md:text-xl">
+                Architecting scalable solutions that bridge technical complexity with elegant user experiences. Building high-performance systems with rigorous attention to detail.
+            </p>
+<div class="flex flex-wrap items-center justify-center gap-6">
+<a class="px-10 py-5 bg-primary text-white rounded-xl font-label-md text-label-md hover:bg-primary/90 transition-all duration-300 flex items-center gap-3 shadow-xl shadow-primary/30 hover:-translate-y-1" href="#projects">
+                    Explore Projects
+                    <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</a>
+<a class="px-10 py-5 glass-panel text-on-surface border-2 border-primary/10 rounded-xl font-label-md text-label-md hover:border-primary/40 transition-all duration-300 hover:-translate-y-1 font-bold" href="#contact">
+                    Get In Touch
+                </a>
+</div>
+<div class="flex items-center justify-center gap-6 mt-16">
+<a aria-label="GitHub" class="w-12 h-12 flex items-center justify-center rounded-full glass-panel text-secondary hover:text-primary hover:border-primary/30 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">code</span>
+</a>
+<a aria-label="LinkedIn" class="w-12 h-12 flex items-center justify-center rounded-full glass-panel text-secondary hover:text-primary hover:border-primary/30 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">work</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Selected Projects Section -->
+<section class="max-w-[1120px] mx-auto px-gutter py-section-gap-md relative z-10" id="projects">
+<div class="mb-20 text-center">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4 font-black">Featured Projects</h2>
+<div class="h-1.5 w-24 bg-primary mx-auto rounded-full mb-6"></div>
+<p class="font-body-md text-body-md text-secondary text-lg max-w-2xl mx-auto">Problem-solving through architectural rigor and modern implementation.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+<!-- Project 1 (Flagship Isolation) -->
+<div class="md:col-span-12 lg:col-span-7 flagship-glow interactive-card rounded-2xl overflow-hidden flex flex-col h-full bg-white/60 backdrop-blur-md">
+<div class="h-72 bg-slate-900/5 flex items-center justify-center p-6 border-b border-primary/10 relative overflow-hidden group">
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 backdrop-blur-[2px]"></div>
+<img alt="FitVision Code" class="w-full h-full object-cover rounded-xl shadow-lg transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAhg4E9zQK5zV2habfaGi1GRCqMP8Hx2XwH3caulKKRBUlCb3nfLdmPRqSGqBxx7nbE22poPzEV3rIoZlkKM5gt8slKq-ZPaKzq_L21ydzHZWSdu3V3nGYSFHRCfEg3j35LHBJ6jN9x5f6-JECXl2lfGTVmLuGR6OOG4czoTQJ4PoK7m11oHy0l8Y-F3DZAnX7yKCEJf4GAPo_JZBGbu02klfwYk0ivzZYzdiLkX9iiOgoLkFNKuRZulhtCQOT1U2HYrN2j2ES_gWD"/>
+<div class="absolute top-4 left-4 z-20 px-4 py-1.5 bg-primary text-white text-[10px] uppercase font-black tracking-widest rounded-full">Flagship</div>
+</div>
+<div class="p-10 flex flex-col flex-grow">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3 text-[28px] font-black tracking-tight">FitVision</h3>
+<p class="font-body-md text-body-md text-secondary mb-10 flex-grow text-lg leading-relaxed">AI-powered computer vision project utilizing machine learning for real-time form analysis and biomechanical tracking. Built with focus on low-latency inference.</p>
+<div class="flex flex-wrap gap-3 mb-10 mt-auto">
+<span class="px-4 py-1.5 bg-primary text-white font-code-sm text-code-sm rounded-lg font-bold shadow-sm">MediaPipe</span>
+<span class="px-4 py-1.5 bg-primary text-white font-code-sm text-code-sm rounded-lg font-bold shadow-sm">Python</span>
+<span class="px-4 py-1.5 bg-primary text-white font-code-sm text-code-sm rounded-lg font-bold shadow-sm">React</span>
+</div>
+<div class="flex gap-8 pt-4">
+<a class="text-primary hover:text-primary/80 font-bold text-label-md flex items-center gap-2 transition-colors uppercase tracking-wider" href="#">
+                            Live Demo <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+</a>
+<a class="text-secondary hover:text-primary font-bold text-label-md flex items-center gap-2 transition-colors uppercase tracking-wider" href="#">
+                            Codebase <span class="material-symbols-outlined text-[18px]">terminal</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="md:col-span-6 lg:col-span-5 glass-panel interactive-card rounded-2xl overflow-hidden flex flex-col h-full">
+<div class="h-60 bg-slate-900/5 flex items-center justify-center p-6 border-b border-white/50 relative overflow-hidden group">
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 backdrop-blur-[2px]"></div>
+<img alt="AlgoLab Dashboard" class="w-full h-full object-cover rounded-xl shadow-sm transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSR7gr55BQnyzU_Hl1GXaw3IwKgvlE33uLdpIpqp_ykrMn8uUdTNIIk-hp0zvEreb6mBbJAsiMTXb7ysE-G4ojvkGPCHgtZsOXcIQ7TTFT4Rs7dpgBfzNOOkJDhV1nURdObgvvTeD5w_a41sm-OZdDfQWVPBocIL4AMo24g5_h17HNQM58PXYvqzKJ-sznw_4QilYQGLlriLjbiDU--e0BWiDC1pt7Se_TCyaZCF7aSCHjpFdJaUtEYNEwylH2ntDreL4Y7L3dZS5_"/>
+</div>
+<div class="p-8 flex flex-col flex-grow">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3 text-[22px] font-black tracking-tight">AlgoLab</h3>
+<p class="font-body-md text-body-md text-secondary mb-8 flex-grow leading-relaxed">Interactive algorithmic visualization platform designed to clarify complex data structures and execution flows.</p>
+<div class="flex flex-wrap gap-2 mb-8 mt-auto">
+<span class="px-3 py-1.5 bg-primary text-white font-code-sm text-code-sm rounded-lg font-bold shadow-sm">React</span>
+<span class="px-3 py-1.5 bg-primary text-white font-code-sm text-code-sm rounded-lg font-bold shadow-sm">Tailwind</span>
+</div>
+<div class="flex gap-6 pt-4">
+<a class="text-primary hover:text-primary/80 font-bold text-label-md flex items-center gap-1.5 transition-colors uppercase tracking-wider" href="#">
+                            Live <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+<a class="text-secondary hover:text-primary font-bold text-label-md flex items-center gap-1.5 transition-colors uppercase tracking-wider" href="#">
+                            Code <span class="material-symbols-outlined text-[16px]">terminal</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="md:col-span-6 lg:col-span-12 glass-panel interactive-card rounded-2xl overflow-hidden flex flex-col lg:flex-row h-full">
+<div class="h-64 lg:h-auto lg:w-2/5 bg-slate-900/5 flex items-center justify-center p-8 border-b lg:border-b-0 lg:border-r border-white/50 relative overflow-hidden group">
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 backdrop-blur-[2px]"></div>
+<img alt="Data Architecture" class="w-full h-full object-cover rounded-xl shadow-md transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCG5jXTAhk-rm8Id9UwEqoDdTBwudV-moI-5zNXXcrZtkgzv3phbTbkleGh1NSQHZUy3jXtBGEh-jxANHJGjnAHtgyE6pQm_ZFokCh4qMrCgOuLEO01w8ko4OgLVTxsVBfeDktz8hXOudfNt2NjlNanmSwgDtbfOz5_nIfcHm0nKCIhbdV-To5aMkXF4NKLfSfMYcAxEgAcws-Y4IGURIcGpIwScxVG6R8c6IEJiggF4CzMszc8gLFjeugC-OfsuDH0_Vyf0s0PURP5"/>
+</div>
+<div class="p-10 flex flex-col flex-grow lg:w-3/5 justify-center">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3 text-[24px] font-black tracking-tight">Deadline Tracker</h3>
+<p class="font-body-md text-body-md text-secondary mb-10 flex-grow text-lg leading-relaxed">High-performance real-time data scraping dashboard aggregating critical timelines across distributed sources. Engineered for high concurrency.</p>
+<div class="flex flex-wrap gap-3 mb-10 mt-auto">
+<span class="px-4 py-1.5 bg-primary text-white font-code-sm text-code-sm rounded-lg font-bold shadow-sm">FastAPI</span>
+<span class="px-4 py-1.5 bg-primary text-white font-code-sm text-code-sm rounded-lg font-bold shadow-sm">Python</span>
+<span class="px-4 py-1.5 bg-primary text-white font-code-sm text-code-sm rounded-lg font-bold shadow-sm">PostgreSQL</span>
+</div>
+<div class="flex gap-8 pt-4">
+<a class="text-primary hover:text-primary/80 font-bold text-label-md flex items-center gap-2 transition-colors uppercase tracking-wider" href="#">
+                            Live Demo <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+</a>
+<a class="text-secondary hover:text-primary font-bold text-label-md flex items-center gap-2 transition-colors uppercase tracking-wider" href="#">
+                            Codebase <span class="material-symbols-outlined text-[18px]">terminal</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Tech Stack & Infrastructure -->
+<section class="max-w-[1120px] mx-auto px-gutter py-section-gap-md relative z-10" id="skills">
+<div class="mb-20 text-center">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4 font-black">Core Infrastructure</h2>
+<div class="h-1.5 w-24 bg-primary mx-auto rounded-full mb-6"></div>
+<p class="font-body-md text-body-md text-secondary text-lg max-w-2xl mx-auto">Expertise across the full stack with focus on performance and reliability.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Frontend -->
+<div class="glass-panel interactive-card p-10 rounded-2xl">
+<div class="flex flex-col items-center text-center mb-8 pb-6 border-b border-primary/10">
+<div class="p-4 bg-primary/10 rounded-2xl mb-4 text-primary">
+<span class="material-symbols-outlined text-4xl">web</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface text-[22px] font-black uppercase tracking-tight">Frontend</h3>
+</div>
+<ul class="space-y-4">
+<li class="flex items-center justify-between p-3 hover:bg-primary/5 rounded-xl transition-all group">
+<span class="font-bold text-on-surface">React / Next.js</span>
+<span class="text-primary opacity-0 group-hover:opacity-100 transition-opacity font-bold">01</span>
+</li>
+<li class="flex items-center justify-between p-3 hover:bg-primary/5 rounded-xl transition-all group">
+<span class="font-bold text-on-surface">Tailwind CSS</span>
+<span class="text-primary opacity-0 group-hover:opacity-100 transition-opacity font-bold">02</span>
+</li>
+<li class="flex items-center justify-between p-3 hover:bg-primary/5 rounded-xl transition-all group">
+<span class="font-bold text-on-surface">TypeScript</span>
+<span class="text-primary opacity-0 group-hover:opacity-100 transition-opacity font-bold">03</span>
+</li>
+</ul>
+</div>
+<!-- Backend -->
+<div class="glass-panel interactive-card p-10 rounded-2xl">
+<div class="flex flex-col items-center text-center mb-8 pb-6 border-b border-primary/10">
+<div class="p-4 bg-primary/10 rounded-2xl mb-4 text-primary">
+<span class="material-symbols-outlined text-4xl">dns</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface text-[22px] font-black uppercase tracking-tight">Backend</h3>
+</div>
+<ul class="space-y-4">
+<li class="flex items-center justify-between p-3 hover:bg-primary/5 rounded-xl transition-all group">
+<span class="font-bold text-on-surface">Python / FastAPI</span>
+<span class="text-primary opacity-0 group-hover:opacity-100 transition-opacity font-bold">01</span>
+</li>
+<li class="flex items-center justify-between p-3 hover:bg-primary/5 rounded-xl transition-all group">
+<span class="font-bold text-on-surface">Node.js / Express</span>
+<span class="text-primary opacity-0 group-hover:opacity-100 transition-opacity font-bold">02</span>
+</li>
+<li class="flex items-center justify-between p-3 hover:bg-primary/5 rounded-xl transition-all group">
+<span class="font-bold text-on-surface">PostgreSQL / Redis</span>
+<span class="text-primary opacity-0 group-hover:opacity-100 transition-opacity font-bold">03</span>
+</li>
+</ul>
+</div>
+<!-- Infrastructure -->
+<div class="glass-panel interactive-card p-10 rounded-2xl">
+<div class="flex flex-col items-center text-center mb-8 pb-6 border-b border-primary/10">
+<div class="p-4 bg-primary/10 rounded-2xl mb-4 text-primary">
+<span class="material-symbols-outlined text-4xl">cloud</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface text-[22px] font-black uppercase tracking-tight">Cloud</h3>
+</div>
+<ul class="space-y-4">
+<li class="flex items-center justify-between p-3 hover:bg-primary/5 rounded-xl transition-all group">
+<span class="font-bold text-on-surface">Docker / K8s</span>
+<span class="text-primary opacity-0 group-hover:opacity-100 transition-opacity font-bold">01</span>
+</li>
+<li class="flex items-center justify-between p-3 hover:bg-primary/5 rounded-xl transition-all group">
+<span class="font-bold text-on-surface">CI/CD Pipelines</span>
+<span class="text-primary opacity-0 group-hover:opacity-100 transition-opacity font-bold">02</span>
+</li>
+<li class="flex items-center justify-between p-3 hover:bg-primary/5 rounded-xl transition-all group">
+<span class="font-bold text-on-surface">AWS / Nginx</span>
+<span class="text-primary opacity-0 group-hover:opacity-100 transition-opacity font-bold">03</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="max-w-[1120px] mx-auto px-gutter py-section-gap-md relative z-10" id="contact">
+<div class="glass-panel p-12 md:p-20 rounded-[2rem] border-2 border-primary/5">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-8 font-black uppercase tracking-tight">Initiate<br/>Contact</h2>
+<p class="font-body-md text-body-md text-secondary mb-12 text-lg leading-relaxed">Available for architectural consultation and high-impact engineering roles.</p>
+<div class="space-y-8">
+<div class="flex items-center gap-6 group cursor-pointer">
+<div class="w-14 h-14 flex items-center justify-center bg-primary text-white rounded-2xl shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs uppercase font-black text-primary tracking-widest mb-1">Email Address</span>
+<a class="font-headline-md text-[20px] font-bold text-on-surface group-hover:text-primary transition-colors" href="mailto:hello@example.com">hello@example.com</a>
+</div>
+</div>
+<div class="flex items-center gap-6 group">
+<div class="w-14 h-14 flex items-center justify-center bg-white border border-primary/10 text-primary rounded-2xl shadow-sm">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs uppercase font-black text-primary tracking-widest mb-1">Based In</span>
+<span class="font-headline-md text-[20px] font-bold text-on-surface">Global / Remote</span>
+</div>
+</div>
+</div>
+</div>
+<form class="space-y-6 flex flex-col justify-center">
+<div class="relative group">
+<label class="sr-only" for="name">Name</label>
+<input class="w-full bg-white/60 border-0 border-b-2 border-primary/10 px-0 py-5 text-on-surface placeholder:text-secondary/50 focus:ring-0 focus:border-primary transition-all font-bold text-lg" id="name" placeholder="YOUR NAME" type="text"/>
+</div>
+<div class="relative group">
+<label class="sr-only" for="email">Email</label>
+<input class="w-full bg-white/60 border-0 border-b-2 border-primary/10 px-0 py-5 text-on-surface placeholder:text-secondary/50 focus:ring-0 focus:border-primary transition-all font-bold text-lg" id="email" placeholder="EMAIL ADDRESS" type="email"/>
+</div>
+<div class="relative group">
+<label class="sr-only" for="message">Message</label>
+<textarea class="w-full bg-white/60 border-0 border-b-2 border-primary/10 px-0 py-5 text-on-surface placeholder:text-secondary/50 focus:ring-0 focus:border-primary transition-all font-bold text-lg resize-none" id="message" placeholder="TELL ME ABOUT YOUR PROJECT" rows="4"></textarea>
+</div>
+<button class="px-10 py-5 bg-primary text-white rounded-xl font-black text-sm uppercase tracking-widest hover:bg-primary/90 transition-all duration-300 self-start shadow-xl shadow-primary/30 hover:-translate-y-1 mt-6" type="submit">
+                        Transmit Message
+                    </button>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full glass-nav relative z-10 mt-20 border-t border-primary/5">
+<div class="max-w-[1120px] mx-auto px-gutter py-16">
+<div class="flex flex-col md:flex-row justify-between items-center gap-12">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="font-black text-4xl text-primary tracking-tighter">MA.</div>
+<p class="font-bold text-secondary tracking-tight">ENGINEERING EXCELLENCE</p>
+</div>
+<p class="font-body-md text-secondary text-sm md:text-base opacity-70 text-center">
+                © 2024 Mahmoud Abdelkareem. All Rights Reserved.
+            </p>
+<div class="flex gap-10">
+<a class="text-on-surface hover:text-primary transition-all font-black text-xs uppercase tracking-widest" href="#">GitHub</a>
+<a class="text-on-surface hover:text-primary transition-all font-black text-xs uppercase tracking-widest" href="#">LinkedIn</a>
+<a class="text-on-surface hover:text-primary transition-all font-black text-xs uppercase tracking-widest" href="#">X / Twitter</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
