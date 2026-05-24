@@ -371,35 +371,6 @@ function handleContact(e) {
   draw();
 })();
 
-// ── Cursor Trail ─────────────────────────────────────────────
-(function(){
-  if(window.matchMedia('(pointer: coarse)').matches) return; // skip on touch
-  const pool = [];
-  const MAX = 14;
-  for(let i=0;i<MAX;i++){
-    const d = document.createElement('div');
-    d.className = 'cursor-dot';
-    d.style.opacity = 0;
-    document.body.appendChild(d);
-    pool.push({el:d, x:0, y:0});
-  }
-  const positions = [];
-  window.addEventListener('mousemove', e => {
-    positions.unshift({x:e.clientX, y:e.clientY});
-    if(positions.length > MAX) positions.pop();
-    pool.forEach((dot, i) => {
-      const p = positions[i];
-      if(!p){ dot.el.style.opacity=0; return; }
-      const scale = 1 - i/MAX;
-      dot.el.style.cssText = `
-        left:${p.x}px;top:${p.y}px;
-        opacity:${scale * 0.55};
-        transform:translate(-50%,-50%) scale(${scale});
-        transition:opacity .3s;
-      `;
-    });
-  });
-})();
 
 loadProjects();
 loadSkills();
