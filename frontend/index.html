@@ -37,6 +37,7 @@
 </nav>
 
 <section class="hero">
+  <canvas id="code-canvas"></canvas>
   <div class="container">
     <div class="reveal">
       <div class="hero-badge"><span></span>Available for opportunities</div>
@@ -125,7 +126,7 @@
             </div>
             <div>
               <div class="contact-label">Email</div>
-              <a href="mahmoudabdelkareem.info@gmail.com" class="contact-value">mahmoudabdelkareem.info@gmail.com</a>
+              <a href="mailto:mahmoudabdelkareem.info@gmail.com" class="contact-value">mahmoudabdelkareem.info@gmail.com</a>
             </div>
           </div>
           <div class="contact-item">
@@ -304,6 +305,101 @@ function handleContact(e) {
   msg.textContent = '✓ Message sent! I\'ll get back to you soon.';
   e.target.reset();
 }
+
+// ── Code Rain Canvas ─────────────────────────────────────────
+(function(){
+  const canvas = document.getElementById('code-canvas');
+  const ctx = canvas.getContext('2d');
+  const snippets = [
+    'const deploy = async () => {','  await docker.build()','  nginx.reload()','};',
+    'def train_model(X, y):','  return model.fit(X,y)',
+    'SELECT * FROM users','WHERE active = true',
+    'git commit -m "feat: ..."','git push origin main',
+    'class APIView(View):','  def get(self, req):',
+    'useEffect(() => {','  fetchData()','}, [deps])',
+    'gunicorn app:wsgi -w 4','supervisor start all',
+    'import torch','model.eval()',
+    '{{ project.title }}','{% for item in qs %}',
+    'border-radius: 20px;','backdrop-filter: blur()',
+    'O(n log n)','T(n) = 2T(n/2)+n',
+    'ssh -i key.pem ubuntu@','systemctl restart nginx',
+    'pip install django','npm run build',
+    'while(true) { ship(); }','// TODO: sleep()',
+  ];
+
+  const cols = [];
+  const FONT_SIZE = 13;
+  const FONT = `${FONT_SIZE}px 'JetBrains Mono', monospace`;
+  const BLUE = 'rgba(37,99,235,';
+
+  function resize(){
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    const numCols = Math.ceil(canvas.width / 220);
+    cols.length = 0;
+    for(let i=0;i<numCols;i++){
+      cols.push({
+        x: (canvas.width / numCols) * i + 20,
+        y: Math.random() * -canvas.height,
+        speed: 0.4 + Math.random() * 0.5,
+        snippet: snippets[Math.floor(Math.random()*snippets.length)],
+        alpha: 0.12 + Math.random() * 0.18,
+        size: 11 + Math.floor(Math.random()*4),
+      });
+    }
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    cols.forEach(col => {
+      ctx.font = `${col.size}px 'JetBrains Mono', monospace`;
+      ctx.fillStyle = BLUE + col.alpha + ')';
+      ctx.fillText(col.snippet, col.x, col.y);
+      col.y += col.speed;
+      if(col.y > canvas.height + 60){
+        col.y = -60;
+        col.snippet = snippets[Math.floor(Math.random()*snippets.length)];
+        col.alpha = 0.1 + Math.random() * 0.2;
+        col.speed = 0.3 + Math.random() * 0.5;
+      }
+    });
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  draw();
+})();
+
+// ── Cursor Trail ─────────────────────────────────────────────
+(function(){
+  if(window.matchMedia('(pointer: coarse)').matches) return; // skip on touch
+  const pool = [];
+  const MAX = 14;
+  for(let i=0;i<MAX;i++){
+    const d = document.createElement('div');
+    d.className = 'cursor-dot';
+    d.style.opacity = 0;
+    document.body.appendChild(d);
+    pool.push({el:d, x:0, y:0});
+  }
+  const positions = [];
+  window.addEventListener('mousemove', e => {
+    positions.unshift({x:e.clientX, y:e.clientY});
+    if(positions.length > MAX) positions.pop();
+    pool.forEach((dot, i) => {
+      const p = positions[i];
+      if(!p){ dot.el.style.opacity=0; return; }
+      const scale = 1 - i/MAX;
+      dot.el.style.cssText = `
+        left:${p.x}px;top:${p.y}px;
+        opacity:${scale * 0.55};
+        transform:translate(-50%,-50%) scale(${scale});
+        transition:opacity .3s;
+      `;
+    });
+  });
+})();
 
 loadProjects();
 loadSkills();
