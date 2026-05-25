@@ -93,6 +93,12 @@
       <div class="project-card card-regular col-5" style="min-height:380px;background:rgba(255,255,255,.4);border-radius:20px;border:1px solid rgba(255,255,255,.6)"></div>
       <div class="project-card card-regular col-12" style="min-height:240px;background:rgba(255,255,255,.4);border-radius:20px;border:1px solid rgba(255,255,255,.6)"></div>
     </div>
+    <div style="text-align:center;margin-top:48px" class="reveal">
+      <a href="/projects" class="btn-ghost" style="display:inline-flex">
+        View All Projects
+        <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -204,9 +210,13 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 async function loadProjects() {
   const grid = document.getElementById('projects-grid');
   try {
-    const res = await fetch(`${API}/api/projects`);
+    // total count for stats
+    const allRes = await fetch(`${API}/api/projects`);
+    const allProjects = await allRes.json();
+    document.getElementById('proj-count').textContent = allProjects.length + '+';
+    // featured only for homepage
+    const res = await fetch(`${API}/api/projects/featured`);
     const projects = await res.json();
-    document.getElementById('proj-count').textContent = projects.length + '+';
     if (!projects.length) { grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--muted);padding:60px 0">No projects yet.</p>'; return; }
 
     const flagship = projects.filter(p => p.is_flagship);

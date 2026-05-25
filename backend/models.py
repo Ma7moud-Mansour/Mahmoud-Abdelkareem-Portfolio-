@@ -14,6 +14,7 @@ class Project(Base):
     github_url = Column(String(500), nullable=True)
     tags = Column(JSON, default=list)                # list of strings e.g. ["Python","FastAPI"]
     is_flagship = Column(Boolean, default=False)
+    is_featured = Column(Boolean, default=False)     # True = show on homepage, False = All Projects only
     order = Column(Integer, default=0)               # display order (lower = first)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())

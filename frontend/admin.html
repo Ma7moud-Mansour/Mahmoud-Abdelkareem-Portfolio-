@@ -157,6 +157,10 @@
           <input type="checkbox" id="proj-flagship" class="w-5 h-5 rounded" style="accent-color:#2563eb"/>
           <label for="proj-flagship" class="font-bold text-sm">Mark as Flagship project</label>
         </div>
+        <div class="flex items-center gap-3">
+          <input type="checkbox" id="proj-featured" class="w-5 h-5 rounded" style="accent-color:#16a34a"/>
+          <label for="proj-featured" class="font-bold text-sm">Featured on Homepage</label>
+        </div>
         <div>
           <label class="section-title">Display Order</label>
           <input id="proj-order" class="input" type="number" value="0" min="0"/>
@@ -271,6 +275,7 @@ async function loadProjects() {
         <div class="flex items-center gap-2 mb-1">
           <h3 class="font-black text-base truncate">${esc(p.title)}</h3>
           ${p.is_flagship ? '<span class="text-[10px] bg-blue-600 text-white px-2 py-0.5 rounded-full font-black uppercase tracking-wider">Flagship</span>' : ''}
+          ${p.is_featured ? '<span class="text-[10px] bg-green-600 text-white px-2 py-0.5 rounded-full font-black uppercase tracking-wider">Featured</span>' : ''}
         </div>
         <p class="text-slate-400 text-sm line-clamp-2 mb-2">${esc(p.description)}</p>
         <div class="flex flex-wrap gap-1">${(p.tags||[]).map(t=>`<span class="tag-chip">${esc(t)}</span>`).join('')}</div>
@@ -296,6 +301,7 @@ async function editProject(id) {
   document.getElementById('proj-github').value = p.github_url || '';
   document.getElementById('proj-tags').value = (p.tags||[]).join(', ');
   document.getElementById('proj-flagship').checked = p.is_flagship;
+  document.getElementById('proj-featured').checked = p.is_featured;
   document.getElementById('proj-order').value = p.order;
   if (p.image_url) { document.getElementById('image-preview').src = p.image_url; document.getElementById('image-preview-wrap').classList.remove('hidden'); }
   else document.getElementById('image-preview-wrap').classList.add('hidden');
@@ -321,6 +327,7 @@ async function saveProject(e) {
     demo_url: document.getElementById('proj-demo').value || null,
     github_url: document.getElementById('proj-github').value || null,
     tags, is_flagship: document.getElementById('proj-flagship').checked,
+    is_featured: document.getElementById('proj-featured').checked,
     order: parseInt(document.getElementById('proj-order').value) || 0
   };
   const url = id ? `${API}/api/admin/projects/${id}` : `${API}/api/admin/projects`;

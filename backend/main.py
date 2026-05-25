@@ -103,6 +103,11 @@ def get_projects(db: Session = Depends(get_db)):
     return crud.get_projects(db)
 
 
+@app.get("/api/projects/featured", response_model=List[schemas.ProjectResponse], tags=["Projects"])
+def get_featured_projects(db: Session = Depends(get_db)):
+    return crud.get_featured_projects(db)
+
+
 @app.get("/api/projects/{project_id}", response_model=schemas.ProjectResponse, tags=["Projects"])
 def get_project(project_id: int, db: Session = Depends(get_db)):
     project = crud.get_project(db, project_id)
@@ -268,6 +273,11 @@ def serve_index():
 @app.get("/admin.html", include_in_schema=False)
 def serve_admin():
     return FileResponse(str(FRONTEND_DIR / "admin.html"))
+
+@app.get("/projects", include_in_schema=False)
+@app.get("/projects.html", include_in_schema=False)
+def serve_projects():
+    return FileResponse(str(FRONTEND_DIR / "projects.html"))
 
 # Catch-all for other static assets (css, js, images in frontend/)
 if FRONTEND_DIR.exists():

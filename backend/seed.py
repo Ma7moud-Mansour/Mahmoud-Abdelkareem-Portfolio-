@@ -29,6 +29,7 @@ projects = [
         github_url="#",
         tags=["MediaPipe", "Python", "React"],
         is_flagship=True,
+        is_featured=True,
         order=1,
     ),
     ProjectCreate(
@@ -39,6 +40,7 @@ projects = [
         github_url="#",
         tags=["React", "Tailwind"],
         is_flagship=False,
+        is_featured=True,
         order=2,
     ),
     ProjectCreate(
@@ -49,6 +51,7 @@ projects = [
         github_url="#",
         tags=["FastAPI", "Python", "PostgreSQL"],
         is_flagship=False,
+        is_featured=True,
         order=3,
     ),
 ]

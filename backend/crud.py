@@ -19,6 +19,10 @@ def get_projects(db: Session, skip: int = 0, limit: int = 100) -> List[Project]:
     return db.query(Project).order_by(Project.is_flagship.desc(), Project.order).offset(skip).limit(limit).all()
 
 
+def get_featured_projects(db: Session) -> List[Project]:
+    return db.query(Project).filter(Project.is_featured == True).order_by(Project.is_flagship.desc(), Project.order).all()
+
+
 def get_project(db: Session, project_id: int) -> Optional[Project]:
     return db.query(Project).filter(Project.id == project_id).first()
 

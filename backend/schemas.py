@@ -15,6 +15,7 @@ class ProjectBase(BaseModel):
     github_url: Optional[str] = None
     tags: List[str] = []
     is_flagship: bool = False
+    is_featured: bool = False
     order: int = 0
 
 
@@ -30,6 +31,7 @@ class ProjectUpdate(BaseModel):
     github_url: Optional[str] = None
     tags: Optional[List[str]] = None
     is_flagship: Optional[bool] = None
+    is_featured: Optional[bool] = None
     order: Optional[int] = None
 
 
