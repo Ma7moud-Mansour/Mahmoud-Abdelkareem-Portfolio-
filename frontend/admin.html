@@ -29,9 +29,8 @@
 </head>
 <body>
 
-<!-- Login Screen -->
 <div id="login-screen" class="min-h-screen flex items-center justify-center p-6">
-  <div class="glass rounded-2xl p-10 w-full max-w-md">
+  <div class="glass rounded-2xl p-6 md:p-10 w-full max-w-md">
     <div class="text-center mb-8">
       <div class="text-4xl font-black text-blue-500 tracking-tighter mb-2">MA.</div>
       <h1 class="text-2xl font-black">Admin Panel</h1>
@@ -52,13 +51,19 @@
   </div>
 </div>
 
-<!-- Dashboard -->
-<div id="dashboard" class="hidden min-h-screen">
-  <!-- Sidebar -->
-  <div class="fixed inset-y-0 left-0 w-64 glass border-r border-white/10 flex flex-col p-6 z-40">
-    <div class="text-3xl font-black text-blue-500 tracking-tighter mb-2">MA.</div>
-    <p class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-8">Portfolio Admin</p>
-    <nav class="flex-1 space-y-2">
+<div id="dashboard" class="hidden min-h-screen flex flex-col md:flex-row">
+  
+  <div class="md:hidden flex items-center justify-between p-4 glass border-b border-white/10 z-50">
+    <div class="text-2xl font-black text-blue-500 tracking-tighter">MA.</div>
+    <button onclick="toggleMobileMenu()" class="text-white p-2">
+      <span class="material-symbols-outlined text-[28px]" id="menu-icon">menu</span>
+    </button>
+  </div>
+
+  <div id="sidebar" class="fixed md:sticky inset-y-0 left-0 w-64 glass border-r border-white/10 flex flex-col p-6 z-40 transform -translate-x-full md:translate-x-0 transition-transform duration-300 h-screen">
+    <div class="hidden md:block text-3xl font-black text-blue-500 tracking-tighter mb-2">MA.</div>
+    <p class="hidden md:block text-slate-400 text-xs font-bold uppercase tracking-wider mb-8">Portfolio Admin</p>
+    <nav class="flex-1 space-y-2 mt-16 md:mt-0">
       <button onclick="showTab('projects')" id="tab-projects" class="w-full text-left px-4 py-3 rounded-xl font-bold text-sm flex items-center gap-3 bg-blue-600/20 text-blue-400">
         <span class="material-symbols-outlined text-[20px]">rocket_launch</span>Projects
       </button>
@@ -71,30 +76,27 @@
     </button>
   </div>
 
-  <!-- Main -->
-  <div class="ml-64 p-8">
-    <!-- Projects Tab -->
+  <div class="flex-1 p-4 md:p-8 w-full min-w-0">
     <div id="pane-projects">
-      <div class="flex items-center justify-between mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
           <h2 class="text-2xl font-black">Projects</h2>
           <p class="text-slate-400 text-sm">Add, edit and delete portfolio projects</p>
         </div>
-        <button class="btn-primary flex items-center gap-2" onclick="openProjectModal()">
+        <button class="btn-primary flex items-center justify-center gap-2 w-full sm:w-auto" onclick="openProjectModal()">
           <span class="material-symbols-outlined text-[18px]">add</span>New Project
         </button>
       </div>
       <div id="projects-list" class="space-y-4"><div class="text-slate-400 text-center py-10">Loading...</div></div>
     </div>
 
-    <!-- Skills Tab -->
     <div id="pane-skills" class="hidden">
-      <div class="flex items-center justify-between mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
           <h2 class="text-2xl font-black">Skills</h2>
           <p class="text-slate-400 text-sm">Manage your tech stack</p>
         </div>
-        <button class="btn-primary flex items-center gap-2" onclick="openSkillModal()">
+        <button class="btn-primary flex items-center justify-center gap-2 w-full sm:w-auto" onclick="openSkillModal()">
           <span class="material-symbols-outlined text-[18px]">add</span>New Skill
         </button>
       </div>
@@ -103,7 +105,6 @@
   </div>
 </div>
 
-<!-- Project Modal -->
 <div id="project-modal" class="modal-bg hidden" onclick="if(event.target===this)closeModal('project-modal')">
   <div class="modal">
     <h3 id="proj-modal-title" class="text-xl font-black mb-6">Add Project</h3>
@@ -119,15 +120,14 @@
           <textarea id="proj-desc" class="input" rows="3" placeholder="Short description..." required></textarea>
         </div>
 
-        <!-- Image Upload -->
         <div>
           <label class="section-title">Project Image</label>
-          <div class="flex gap-3 items-start">
+          <div class="flex flex-col sm:flex-row gap-3 items-stretch sm:items-start">
             <div class="flex-1">
               <input id="proj-image-url" class="input" placeholder="Or paste image URL"/>
             </div>
             <div>
-              <label class="btn-primary cursor-pointer flex items-center gap-2" style="padding:10px 16px;">
+              <label class="btn-primary cursor-pointer flex items-center justify-center gap-2 w-full" style="padding:10px 16px;">
                 <span class="material-symbols-outlined text-[18px]">upload</span>Upload
                 <input type="file" id="proj-image-file" accept="image/*" class="hidden" onchange="uploadImage()"/>
               </label>
@@ -139,7 +139,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="section-title">Demo URL</label>
             <input id="proj-demo" class="input" placeholder="https://..."/>
@@ -166,15 +166,14 @@
           <input id="proj-order" class="input" type="number" value="0" min="0"/>
         </div>
       </div>
-      <div class="flex gap-3 pt-2">
-        <button class="btn-primary flex-1" type="submit">Save Project</button>
-        <button type="button" onclick="closeModal('project-modal')" class="flex-1 py-2.5 rounded-xl border border-white/20 font-bold text-sm hover:bg-white/5">Cancel</button>
+      <div class="flex flex-col sm:flex-row gap-3 pt-2">
+        <button class="btn-primary flex-1 order-1 sm:order-2" type="submit">Save Project</button>
+        <button type="button" onclick="closeModal('project-modal')" class="flex-1 py-2.5 rounded-xl border border-white/20 font-bold text-sm hover:bg-white/5 order-2 sm:order-1">Cancel</button>
       </div>
     </form>
   </div>
 </div>
 
-<!-- Skill Modal -->
 <div id="skill-modal" class="modal-bg hidden" onclick="if(event.target===this)closeModal('skill-modal')">
   <div class="modal" style="max-width:400px">
     <h3 id="skill-modal-title" class="text-xl font-black mb-6">Add Skill</h3>
@@ -196,20 +195,36 @@
         <label class="section-title">Order</label>
         <input id="skill-order" class="input" type="number" value="0" min="0"/>
       </div>
-      <div class="flex gap-3 pt-2">
-        <button class="btn-primary flex-1" type="submit">Save Skill</button>
-        <button type="button" onclick="closeModal('skill-modal')" class="flex-1 py-2.5 rounded-xl border border-white/20 font-bold text-sm hover:bg-white/5">Cancel</button>
+      <div class="flex flex-col sm:flex-row gap-3 pt-2">
+        <button class="btn-primary flex-1 order-1 sm:order-2" type="submit">Save Skill</button>
+        <button type="button" onclick="closeModal('skill-modal')" class="flex-1 py-2.5 rounded-xl border border-white/20 font-bold text-sm hover:bg-white/5 order-2 sm:order-1">Cancel</button>
       </div>
     </form>
   </div>
 </div>
 
-<!-- Toast -->
 <div id="toast"></div>
 
 <script>
 const API = '';
 let token = localStorage.getItem('admin_token') || '';
+
+// ── Mobile Menu Toggle ───────────────────────────────────────────
+function toggleMobileMenu() {
+  const sidebar = document.getElementById('sidebar');
+  const menuIcon = document.getElementById('menu-icon');
+  const isOpen = sidebar.classList.contains('translate-x-0');
+  
+  if (isOpen) {
+    sidebar.classList.remove('translate-x-0');
+    sidebar.classList.add('-translate-x-full');
+    menuIcon.textContent = 'menu';
+  } else {
+    sidebar.classList.remove('-translate-x-full');
+    sidebar.classList.add('translate-x-0');
+    menuIcon.textContent = 'close';
+  }
+}
 
 // ── Auth ───────────────────────────────────────────────────────
 async function doLogin(e) {
@@ -260,6 +275,8 @@ function showTab(tab) {
       ? 'w-full text-left px-4 py-3 rounded-xl font-bold text-sm flex items-center gap-3 bg-blue-600/20 text-blue-400'
       : 'w-full text-left px-4 py-3 rounded-xl font-bold text-sm flex items-center gap-3 text-slate-400 hover:text-white hover:bg-white/5';
   });
+  // Close menu on mobile after choosing a tab
+  if(window.innerWidth < 768) toggleMobileMenu();
 }
 
 // ── Projects ─────────────────────────────────────────────────
@@ -269,10 +286,10 @@ async function loadProjects() {
   const projects = await r.json();
   if (!projects.length) { list.innerHTML = '<div class="text-slate-400 text-center py-10">No projects yet. Click "New Project" to add one.</div>'; return; }
   list.innerHTML = projects.map(p => `
-    <div class="card">
-      ${p.image_url ? `<img src="${esc(p.image_url)}" class="w-20 h-20 object-cover rounded-xl flex-shrink-0 border border-white/10"/>` : `<div class="w-20 h-20 bg-blue-600/10 rounded-xl flex-shrink-0 flex items-center justify-center"><span class="material-symbols-outlined text-blue-600/50">image</span></div>`}
+    <div class="card flex-col sm:flex-row items-stretch sm:items-start gap-4">
+      ${p.image_url ? `<img src="${esc(p.image_url)}" class="w-full sm:w-20 h-40 sm:h-20 object-cover rounded-xl flex-shrink-0 border border-white/10"/>` : `<div class="w-full sm:w-20 h-20 bg-blue-600/10 rounded-xl flex-shrink-0 flex items-center justify-center"><span class="material-symbols-outlined text-blue-600/50">image</span></div>`}
       <div class="flex-1 min-w-0">
-        <div class="flex items-center gap-2 mb-1">
+        <div class="flex items-center justify-between sm:justify-start gap-2 mb-1">
           <h3 class="font-black text-base truncate">${esc(p.title)}</h3>
           ${p.is_flagship ? '<span class="text-[10px] bg-blue-600 text-white px-2 py-0.5 rounded-full font-black uppercase tracking-wider">Flagship</span>' : ''}
           ${p.is_featured ? '<span class="text-[10px] bg-green-600 text-white px-2 py-0.5 rounded-full font-black uppercase tracking-wider">Featured</span>' : ''}
@@ -280,9 +297,9 @@ async function loadProjects() {
         <p class="text-slate-400 text-sm line-clamp-2 mb-2">${esc(p.description)}</p>
         <div class="flex flex-wrap gap-1">${(p.tags||[]).map(t=>`<span class="tag-chip">${esc(t)}</span>`).join('')}</div>
       </div>
-      <div class="flex gap-2 flex-shrink-0">
-        <button class="btn-edit" onclick="editProject(${p.id})">Edit</button>
-        <button class="btn-danger" onclick="deleteProject(${p.id},'${esc(p.title)}')">Delete</button>
+      <div class="flex sm:flex-col gap-2 w-full sm:w-auto mt-2 sm:mt-0">
+        <button class="btn-edit flex-1 text-center" onclick="editProject(${p.id})">Edit</button>
+        <button class="btn-danger flex-1 text-center" onclick="deleteProject(${p.id},'${esc(p.title)}')">Delete</button>
       </div>
     </div>`).join('');
 }
@@ -381,10 +398,10 @@ async function loadSkills() {
   list.innerHTML = Object.entries(cats).map(([cat, items]) => `
     <div class="card flex-col">
       <div class="text-xs font-black text-blue-400 uppercase tracking-wider mb-3">${esc(cat)}</div>
-      <div class="space-y-2">${items.map(s => `
-        <div class="flex items-center justify-between py-2 px-3 bg-white/5 rounded-xl">
-          <span class="font-bold text-sm">${esc(s.name)}</span>
-          <div class="flex gap-2">
+      <div class="space-y-2 w-full">${items.map(s => `
+        <div class="flex items-center justify-between py-2 px-3 bg-white/5 rounded-xl gap-2">
+          <span class="font-bold text-sm truncate">${esc(s.name)}</span>
+          <div class="flex gap-2 flex-shrink-0">
             <button class="btn-edit" onclick="editSkill(${s.id},'${esc(s.name)}','${esc(s.category)}',${s.order})">Edit</button>
             <button class="btn-danger" onclick="deleteSkill(${s.id},'${esc(s.name)}')">Delete</button>
           </div>
