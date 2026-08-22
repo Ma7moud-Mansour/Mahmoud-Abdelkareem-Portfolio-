@@ -3,27 +3,33 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Portfolio Admin</title>
+<title>Portfolio Studio — Mahmoud Abdelkareem</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <style>
-  body{font-family:'Inter',sans-serif;background:#0f172a;color:#e2e8f0;}
-  .glass{background:rgba(255,255,255,0.05);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.1);}
-  .btn-primary{background:#2563eb;color:#fff;padding:10px 24px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;border:none;transition:all .2s;}
-  .btn-primary:hover{background:#1d4ed8;transform:translateY(-1px);}
+  :root{--navy:#061f46;--navy2:#0a2e63;--orange:#f28c00;--cream:#faf8f3;--muted:#91a4bf;}
+  body{font-family:'Inter',sans-serif;background:var(--navy);color:#eef4fb;}
+  body:before{content:'</>';position:fixed;right:-30px;top:-70px;font:900 300px/1 monospace;color:rgba(255,255,255,.018);pointer-events:none;}
+  .glass{background:rgba(255,255,255,0.045);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.1);}
+  .btn-primary{background:var(--orange);color:var(--navy);padding:10px 24px;border-radius:10px;font-weight:800;font-size:14px;cursor:pointer;border:none;transition:all .2s;box-shadow:0 8px 22px rgba(242,140,0,.18);}
+  .btn-primary:hover{background:#ff9d0a;transform:translateY(-1px);}
   .btn-danger{background:#dc2626;color:#fff;padding:6px 14px;border-radius:8px;font-weight:700;font-size:13px;cursor:pointer;border:none;}
   .btn-danger:hover{background:#b91c1c;}
-  .btn-edit{background:#0891b2;color:#fff;padding:6px 14px;border-radius:8px;font-weight:700;font-size:13px;cursor:pointer;border:none;}
-  .btn-edit:hover{background:#0e7490;}
-  .input{width:100%;background:#1e293b;border:1px solid #334155;border-radius:10px;padding:10px 14px;color:#e2e8f0;font-size:14px;outline:none;}
-  .input:focus{border-color:#2563eb;}
-  .tag-chip{display:inline-flex;align-items:center;gap:4px;background:#1e40af;color:#bfdbfe;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;}
+  .btn-edit{background:transparent;color:var(--orange);padding:6px 14px;border-radius:8px;font-weight:700;font-size:13px;cursor:pointer;border:1px solid rgba(242,140,0,.45);}
+  .btn-edit:hover{background:rgba(242,140,0,.1);}
+  .input{width:100%;background:#082754;border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:10px 14px;color:#eef4fb;font-size:14px;outline:none;}
+  .input:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(242,140,0,.08);}
+  .tag-chip{display:inline-flex;align-items:center;gap:4px;background:rgba(242,140,0,.12);color:#ffc66f;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;border:1px solid rgba(242,140,0,.2);}
   .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:50;display:flex;align-items:center;justify-content:center;}
-  .modal{background:#1e293b;border-radius:20px;padding:32px;width:90%;max-width:640px;max-height:90vh;overflow-y:auto;border:1px solid #334155;}
-  .section-title{font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:#64748b;margin-bottom:16px;}
-  .card{background:#1e293b;border:1px solid #334155;border-radius:14px;padding:20px;display:flex;gap:16px;align-items:flex-start;transition:border-color .2s;}
-  .card:hover{border-color:#2563eb;}
+  .modal{background:var(--navy2);border-radius:20px;padding:32px;width:90%;max-width:640px;max-height:90vh;overflow-y:auto;border:1px solid rgba(255,255,255,.14);box-shadow:0 30px 80px rgba(0,0,0,.35);}
+  .section-title{font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;}
+  .card{background:#082754;border:1px solid rgba(255,255,255,.11);border-radius:14px;padding:20px;display:flex;gap:16px;align-items:flex-start;transition:border-color .2s,transform .2s;}
+  .card:hover{border-color:rgba(242,140,0,.55);transform:translateY(-2px);}
+  .text-blue-500,.text-blue-400{color:var(--orange)!important;}
+  .text-slate-400{color:var(--muted)!important;}
+  [class~="bg-blue-600/20"]{background:rgba(242,140,0,.12)!important;}
+  [class~="border-blue-500/50"]{border-color:rgba(242,140,0,.4)!important;}
   #toast{position:fixed;bottom:24px;right:24px;z-index:100;padding:12px 24px;border-radius:12px;font-weight:700;font-size:14px;opacity:0;transition:opacity .3s;pointer-events:none;}
 </style>
 </head>
@@ -32,9 +38,9 @@
 <div id="login-screen" class="min-h-screen flex items-center justify-center p-6">
   <div class="glass rounded-2xl p-6 md:p-10 w-full max-w-md">
     <div class="text-center mb-8">
-      <div class="text-4xl font-black text-blue-500 tracking-tighter mb-2">MA.</div>
-      <h1 class="text-2xl font-black">Admin Panel</h1>
-      <p class="text-slate-400 text-sm mt-1">Sign in to manage your portfolio</p>
+      <div class="text-4xl font-black text-blue-500 tracking-tighter mb-2">MA<span style="color:#fff">/</span></div>
+      <h1 class="text-2xl font-black">Portfolio Studio</h1>
+      <p class="text-slate-400 text-sm mt-1">Sign in to manage projects and expertise</p>
     </div>
     <form id="login-form" onsubmit="doLogin(event)" class="space-y-4">
       <div>
